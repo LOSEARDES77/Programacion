@@ -18,7 +18,6 @@ public class Main {
         System.out.println("Que mes naciste? (numero de mes): ");
         short mesNacimiento = teclado.nextShort();
 
-        // Validar la fecha introducida
         if (diaNacimiento > 31 || diaNacimiento < 1 || mesNacimiento > 12 || mesNacimiento < 1) {
             System.out.println("Fecha introducida no valida");
             return;
