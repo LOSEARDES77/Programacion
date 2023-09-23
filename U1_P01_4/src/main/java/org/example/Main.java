@@ -2,11 +2,6 @@ package org.example;
 
 import java.util.Calendar;
 import java.util.Scanner;
-import java.util.Date;
-
-/*
-* 4.	Escriba un programa que pregunte la edad al usuario y la fecha actual, y el día y mes de su cumpleaños, y en base a esa información calcule su año de nacimiento.
-* */
 
 public class Main {
     public static void main(String[] args) {
