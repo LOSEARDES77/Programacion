@@ -15,22 +15,16 @@ public class Main {
         ArrayList<Long> factores = new ArrayList<>();
         factores.add(1L);
         long div = numero;
-        long i = 1;
-        while (div > i){
-            i++;
-            if (numero % i == 0){
-                if (esPrimo(i)){
-                    while (div % i == 0){
-                        div /= i;
-                        factores.add((i));
-                    }
+        for (long i = 2; i <= div; i++){
+            if (esPrimo(i)){
+                while (div % i == 0){
+                    div /= i;
+                    factores.add((i));
                 }
             }
-
         }
         return factores;
     }
-
     private static boolean esPrimo(long numero){
         boolean esPrimo = true;
         for (long i = 2; i < numero; i++){

@@ -14,8 +14,12 @@ public class Main {
         ArrayList<Long> factNumero1 = fact(numero1);
         ArrayList<Long> factNumero2 = fact(numero2);
         long mcm = 1;
-        // mcm
-        System.out.println(factNumero1 + "\n" + factNumero2);
+        for (long i = 0; i < Math.max(factNumero1.size(), factNumero2.size()); i++) {
+            if (factNumero2.contains(factNumero1.get((int) i))){
+                mcm *= factNumero1.get((int) i);
+                factNumero2.remove(factNumero1.get((int) i));
+            }
+        }
         System.out.println("Minimo comun multiplo: " + mcm);
     }
 
