@@ -5,34 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41b2dc4c-62c3-4f35-95f5-49a0e73a2efb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../U1_P01_10/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_10/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_11/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_11/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_12/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_12/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_13/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_13/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_14/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_14/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_15/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_15/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_16/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_16/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_17/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_17/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_18/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_18/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_19/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_19/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_20/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_20/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_21/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_21/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_22/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_22/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_23/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_23/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_24/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_24/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_26/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_26/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_27/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_27/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_5/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_5/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_6/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_6/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_7A/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_7A/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_7B/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_7B/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_8/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_8/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1_P01_9/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_9/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../U1_P01_32/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../U1_P01_32/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,14 +25,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/losea/Documents/IdeaProjects/Programacion/U1_P01_25"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/losea/Documents/IdeaProjects/Programacion/U1_P01_25&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
