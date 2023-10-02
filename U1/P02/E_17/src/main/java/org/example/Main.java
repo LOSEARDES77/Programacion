@@ -57,11 +57,27 @@ public class Main {
     }
 
     private static String resta() {
-        return "";
+        int num1 = Integer.parseInt(frac1.split("/")[0]);
+        int den1 = Integer.parseInt(frac1.split("/")[1]);
+        int num2 = Integer.parseInt(frac2.split("/")[0]);
+        int den2 = Integer.parseInt(frac2.split("/")[1]);
+        if (den1 == den2){
+            return (num1 - num2) + "/" + den1;
+        }else{
+            return (num1*den2 - num2*den1) + "/" + (den1*den2);
+        }
     }
 
     private static String suma(){
-        return "";
+        int num1 = Integer.parseInt(frac1.split("/")[0]);
+        int den1 = Integer.parseInt(frac1.split("/")[1]);
+        int num2 = Integer.parseInt(frac2.split("/")[0]);
+        int den2 = Integer.parseInt(frac2.split("/")[1]);
+        if (den1 == den2){
+            return (num1 + num2) + "/" + den1;
+        }else{
+            return (num1*den2 + num2*den1) + "/" + (den1*den2);
+        }
     }
     public static String simp(String frac){
         int num = Integer.parseInt(frac.split("/")[0]);

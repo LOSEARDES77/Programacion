@@ -9,10 +9,12 @@ public class Main {
         String frase = sc.nextLine();
         System.out.print("Introduce un numero del 1 al 5: ");
         int num = sc.nextInt();
-        String frase2 = "";
+        StringBuilder frase2 = new StringBuilder();
         for (int i = 0; i < frase.length(); i++){
-            // TODO
+            int ascii = (int) frase.charAt(i) + num;
+            char letra = (char) ascii;
+            frase2.append(letra);
         }
-        System.out.println(frase);
+        System.out.println(frase2);
     }
 }
