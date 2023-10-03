@@ -19,17 +19,19 @@ public class Main {
     }
 
     private static String reemplazar(String texto, String palabra, String remplazo) {
-        /*String textoTarget = texto.replace(palabra, remplazo);
-        String[] texto2 = texto.split(palabra);
-        System.out.println(texto2.length);
-        String textoFinal = "";
-        for (int i = 0; i < texto2.length; i++) {
-            if ( i != texto2.length-1) textoFinal = textoFinal.concat(texto2[i] + remplazo);
-            else textoFinal = textoFinal.concat(texto2[i]);
-        }*/
-
-        // TODO
-
+        StringBuilder textoReemplazado = new StringBuilder();
+        int posicion = 0;
+        int posicionAnterior = 0;
+        while (posicion != -1) {
+            posicion = texto.indexOf(palabra, posicionAnterior);
+            if (posicion != -1) {
+                textoReemplazado.append(texto, posicionAnterior, posicion).append(remplazo);
+                posicionAnterior = posicion + palabra.length();
+            } else {
+                textoReemplazado.append(texto.substring(posicionAnterior));
+            }
+        }
+        return textoReemplazado.toString();
 
     }
 
