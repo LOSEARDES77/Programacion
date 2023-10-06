@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Main {
     private static ArrayList<Integer> numerosGanadores;
     private static ArrayList<Integer> numerosEstrella;
-    private static ArrayList<Integer> numerosJugador = new ArrayList<>();
-    private static ArrayList<Integer> numerosEstrellaJugador = new ArrayList<>();
+    private static final ArrayList<Integer> numerosJugador = new ArrayList<>();
+    private static final ArrayList<Integer> numerosEstrellaJugador = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
@@ -33,10 +33,12 @@ public class Main {
                 }
                 if (esValido(1, j)) numerosEstrellaJugador.add(j);
             }
+            // Debug System.out.println("NumerosJugador: " + numerosJugador + "\nNumerosEstrellajugador: " + numerosEstrellaJugador);
             System.out.println("Aciertos Normal:   " + getAciertos(0));
             System.out.println("Aciertos Estrella: " + getAciertos(1));
             System.out.print("Quieres seguir jugando? [S/N]: ");
             respuesta = teclado.next();
+
         }
 
     }
@@ -104,5 +106,6 @@ public class Main {
             for (int i = 0; i < 2; i++) numerosEstrella.add((int) (Math.random() * 12) + 1);
             checkNumeros(2);
         }
+        // Debug System.out.println("Numeros ganadores: " + numerosGanadores + "\nNumeros estrella: " + numerosEstrella);
     }
 }
