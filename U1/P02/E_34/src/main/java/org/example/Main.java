@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -22,20 +23,46 @@ public class Main {
 3.Mostrar la nota media del curso completo (igual que la tabla superior)
 4.Mostrar los datos de todos los alumnos que superen la nota media.
 */
-private static float[][] notas = {};
+private static float[][] notas;
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         System.out.print("¿Cuántos alumnos hay?: ");
         int alumnos = teclado.nextInt();
         genNotas(alumnos);
+        System.out.println("Introduce las notas de la última evaluación");
+        for (int i = 0; i < notas.length; i++) {
+            System.out.print("Alumno " + (i + 1) + " (Expediente " + (int) notas[i][0] +"): ");
+            notas[i][3] = teclado.nextFloat();
+        }
+        printNotas();
 
 
     }
 
+    public static void printNotas(){
+        System.out.println("Alumno\tExpediente\tNota1\t\tNota2\t\tNota3\t\tMedia");
+        for (int i = 0; i < notas.length; i++) {
+            // make sure the number occupies 4 spaces
+            System.out.printf("%03d\t\t%04d\t\t", i + 1, (int) notas[i][0]);
+            for (int j = 1; j < notas[i].length; j++) {
+                System.out.printf("%.4f\t\t", notas[i][j]);
+            }
+            System.out.printf("%.4f",(notas[i][1] + notas[i][2] + notas[i][3]) / 3);
+            System.out.println();
+        }
+    }
+
     private static void genNotas(int alumnos){
-        for (int i = 0; i < alumnos - 1; i++) {
-            for (int j = 0; j < 3; j++) {
-                notas[i][j] = (float) (Math.random() * 10);
+        notas = new float[alumnos][4];
+        for (int i = 0; i < alumnos; i++) {
+            for (int j = 0; j < 4; j++) {
+                if(j == 0){
+                    notas[i][j] = (int) (Math.random() * 10000);
+                }else if(j < 3){
+                    notas[i][j] = (float) (Math.random() * 10);
+                }else {
+                    notas[i][j] = 0;
+                }
             }
         }
     }
