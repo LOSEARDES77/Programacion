@@ -1,9 +1,12 @@
 package org.example;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Objects;
+
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class Main {
     private static String[] palabras = {
@@ -23,68 +26,74 @@ public class Main {
             "Coser",
             "Coleccion"
     };
+
     public static void main(String[] args) {
-        Scanner t = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int jugar = 0;
-        while(jugar == 0){
+        while (jugar == 0) {
             juego();
-            System.out.print("Quieres volver a jugar? [S/N]: ");
-            String estado = t.nextLine();
-            if(estado.equalsIgnoreCase("n")){
+            System.out.print("¿Quieres volver a jugar? [S/N]: ");
+            String respuesta = scanner.nextLine();
+            if (!respuesta.equalsIgnoreCase("s")) {
                 jugar = 1;
-                System.out.println("Hasta pronto!");
+                System.out.println("¡Hasta pronto!");
             }
         }
-
     }
 
-    private static void juego(){
+    private static void juego() {
         Scanner teclado = new Scanner(System.in);
         String palabra = palabras[(int) (Math.random() * palabras.length)];
         String letras = "";
-        int aciertos = 0, fallos = 0, estado = -1;
-        while(estado < 0) {
+        int aciertos = 0, fallos = 0;
+
+        while (fallos < 7) {
+            System.out.println("Aciertos: " + aciertos + " | Fallos: " + fallos);
             printPalabra(palabra, letras);
             System.out.print("Introduce una letra: ");
-            String letra = teclado.nextLine();
-            if(letra.length() > 1){
-                System.out.println("Solo una letra!");
-            }else {
+            String letra = teclado.nextLine().toLowerCase();
+
+            if (letra.length() != 1) {
+                System.out.println("Por favor, ingresa solo una letra.");
+            } else if (letras.contains(letra)) {
+                System.out.println("Ya has ingresado esa letra.");
+            } else {
                 letras += letra + " ";
-                if (palabra.toLowerCase().contains(letra.toLowerCase()))aciertos++;
-                else fallos++;
-                System.out.println("Aciertos: " +  aciertos + "\nFallos: " + fallos + "\n   " + printPalabra(palabra, letras));
-                if (Objects.equals(palabra, printPalabra(palabra, letras))){
-                    estado = 0;
-                } else if (fallos >= 7) {
-                    estado = 1;
+                if (palabra.contains(letra)) {
+                    aciertos += palabra.length() - palabra.replace(letra, "").length();
+                } else {
+                    fallos++;
+                }
+
+                if (aciertos == palabra.length()) {
+                    printPalabra(palabra, letras);
+                    System.out.println("¡Ganaste!");
+                    return;
                 }
             }
         }
-        switch (estado){
-            case 0:
-                System.out.println("Ganaste!");
-                break;
-            case 1:
-                System.out.println("Perdiste");
-                break;
-        }
+
+        printPalabra(palabra, letras);
+        System.out.println("Perdiste. La palabra correcta era: " + palabra);
     }
-    private static String printPalabra(String palabra, String l){
-        String resultado = "";
-        String[] letras = l.toLowerCase().split(" ");
-        ArrayList<Integer> aciertos = new ArrayList<>();
-        for (String letra : letras) {
-            if (palabra.toLowerCase().contains(letra.toLowerCase())) {
-                aciertos.add(palabra.indexOf(letra));
+
+    private static void printPalabra(String palabra, String letras) {
+        char[] resultado = new char[palabra.length()];
+        Arrays.fill(resultado, '-');
+        for (char letra : letras.toCharArray()) {
+            for (int i = 0; i < palabra.length(); i++) {
+                if (palabra.charAt(i) == letra) {
+                    resultado[i] = letra;
+                }
             }
         }
-        for (int i = 0; i < palabra.length(); i++) {
-            if(aciertos.contains(i)) resultado += palabra.charAt(i);
-            else resultado += "-";
+        System.out.print("Letras usadas: ");
+        for (int i = 0; i < letras.split(" ").length; i++) {
+            if (i == 0) System.out.print(letras.split(" ")[i]);
+            else System.out.print(" | " + letras.split(" ")[i]);
         }
-        System.out.println(aciertos);
-        return resultado;
-        //TODO fix error
+        System.out.println("\n   " + new String(resultado));
+
     }
 }
+
