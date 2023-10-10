@@ -8,7 +8,7 @@ public class Main {
         Scanner t = new Scanner(System.in);
         double [] numero1 = introducirValores();
         double [] numero2 = introducirValores();
-        System.out.print("En que formato lo quieres?\n  1) Polar\n  2) Cartesiano\n");
+        System.out.print("En que formato quieres el resultado?\n  1) Polar\n  2) Cartesiano\n");
         byte formato = t.nextByte();
         System.out.println("resultado: " + Arrays.toString(multiplicar(numero1, numero2, formato)));
     }
@@ -32,7 +32,10 @@ public class Main {
                 num1[1]*num2[1]
         };
 
-        if (formato)
+        if (formato == 1)
+            return convertToPolar(resultado[0], resultado[1]);
+        else
+            return resultado;
 
     }
 
