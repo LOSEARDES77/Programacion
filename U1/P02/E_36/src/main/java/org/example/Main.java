@@ -30,10 +30,13 @@ public class Main {
     }
 
     private static String handleComplexNumbers(double a, double b, double c) {
-        // TODO fix this method
-        double parteReal = -b/(2*a);
-        double raiz = Math.pow(b, 2.0) - (4 * a * c) * -1 ;
-        double icoef =  Math.sqrt(raiz) / -2;
-        return parteReal + " + " + icoef + " i  y  " + parteReal + " - " + icoef + " i";
+        double parteReal = -b / (2 * a);
+        double parteImaginaria = Math.abs(Math.pow(b, 2) - ( 4 * a * c ));
+        double raiz = Math.sqrt(parteImaginaria);
+        if (raiz != ((long) raiz))
+            return parteReal + " + √" + parteImaginaria + " / " + (2 * a) + " x i y " + parteReal + " - √" + parteImaginaria + " / " + (2 * a) + " x i";
+        else
+            raiz /= (2*a);
+            return parteReal + " + " + raiz +  " x i  y  " + parteReal + " - " + raiz +  " x i";
     }
 }
