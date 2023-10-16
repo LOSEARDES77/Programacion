@@ -8,35 +8,33 @@ public class Main {
         Scanner t = new Scanner(System.in);
         System.out.print("Introduce los datos: ");
         String datos = t.next();
-        System.out.println("Data: " + datos + "\nDatos Comprimidos: " +  compress(datos));
+        String comprimido = compress(datos);
+        System.out.println("Datos:                 " + datos + "\nDatos Comprimidos:   " +  comprimido + "\nCompresion avanzada: " + mejorarCompresion(comprimido));
     }
 
     public static String compress(String input) {
         StringBuilder output = new StringBuilder();
-        int count = 1;
-        char marker = '\\';
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == marker) {
-                output.append(marker);
-                output.append(1);
-                output.append(marker);
-                output.append(marker);
-            } else {
-                count = 1;
-                while (i < input.length() - 1 && input.charAt(i) == input.charAt(i + 1)) {
-                    count++;
-                    i++;
+        int count = 0;
+        for (int i = 1; i < input.length(); i++) {
+            if(input.charAt(i) == input.charAt(i-1)){
+                count++;
+                if (i == input.length()-1){
+                    output.append("\\").append(count+1).append(input.charAt(i-1));
+                    count = 0;
                 }
-                if (count > 1) {
-                    output.append(marker);
-                    output.append(count);
-                    output.append(input.charAt(i));
-                } else {
-                    output.append(input.charAt(i));
+            }else {
+                if (count > 0){
+                    output.append("\\").append(count+1).append(input.charAt(i-1));
+                    count = 0;
+                }else {
+                    output.append(input.charAt(i-1));
                 }
             }
+            if (i == input.length()-1){
+                output.append(input.charAt(i));
+            }
         }
-        return mejorarCompresion(output.toString());
+        return output.toString();
     }
 
     private static String mejorarCompresion(String comprimido){
@@ -44,12 +42,32 @@ public class Main {
         int contador = 0;
         for (int i = 0; i < comprimido.length(); i++) {
             if (comprimido.charAt(i) == '\\') {
-                contador = Integer.parseInt(String.valueOf(comprimido.charAt(i + 1)));
-                if(contador < 3)
-                    mejorado.append(String.valueOf(comprimido.charAt(i + 2)).repeat(Math.max(0, contador)));
-                else
-                    mejorado.append("\\").append(contador).append(comprimido.charAt(i));
-                i += 2;
+                char character = 0;
+                String numeros = "";
+                if (isANumber(String.valueOf(comprimido.charAt(i+1)))){
+                    if(isANumber(String.valueOf(comprimido.charAt(i+2)))){
+                        if (isANumber(String.valueOf(comprimido.charAt(i+3)))){
+                            numeros += comprimido.charAt(i+1) + comprimido.charAt(i+2) + comprimido.charAt(i+3);
+                            contador = Integer.parseInt(numeros);
+                            character = comprimido.charAt(i+4);
+                        }else{
+                            numeros += comprimido.charAt(i+1) + comprimido.charAt(i+2);
+                            contador = Integer.parseInt(numeros);
+                            character = comprimido.charAt(i+3);
+                        }
+                    }else{
+                        numeros += comprimido.charAt(i+1);
+                        contador = Integer.parseInt(numeros);
+                        character = comprimido.charAt(i+2);
+                    }
+                }
+                if (contador < 3){
+                    mejorado.append(String.valueOf(character).repeat(Math.max(0, contador)));
+                }else {
+                    mejorado.append("\\").append(contador).append(character);
+                }
+
+                i += contador;
             } else {
                 mejorado.append(comprimido.charAt(i));
             }
@@ -75,5 +93,14 @@ public class Main {
             }
         }
         return output.toString();
+    }
+
+    public static boolean isANumber(String s){
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
     }
 }
