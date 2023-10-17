@@ -3,3 +3,8 @@ U1/P01/~$ercicios01.docx
 U1/P02/~$ercicios02.docx
 */*/*/.idea
 */*/*/.gitignore
+*/.idea
+*/.gitignore
+*/maven*
+*/mvnw*
+*/.mvn*
