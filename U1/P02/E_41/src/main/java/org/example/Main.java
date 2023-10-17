@@ -38,6 +38,7 @@ public class Main {
     }
 
     private static String mejorarCompresion(String comprimido){
+        /* TODO fix this method */
         StringBuilder mejorado = new StringBuilder();
         int contador = 0;
         for (int i = 0; i < comprimido.length(); i++) {
