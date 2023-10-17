@@ -2,6 +2,7 @@ package org.example;
 
 // Conversion de bases //
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class Main {
         System.out.print("Introduce un numero: ");
         String numero = t.next();
         System.out.print("Introduce la base: ");
-        String base = t.next();
+        int base = t.nextInt();
         System.out.print("En que lo quieres convertir?: ");
         int basetarget = t.nextInt();
         System.out.println("Numero: " + numero + "  Base: " + base + "\nNumero: " + convertirBase(numero, base, basetarget) + "  Base: " + basetarget);
@@ -19,20 +20,34 @@ public class Main {
 
     }
 
-    public static String convertirBase(String numero, String base, int basetarget) {
+    public static String convertirBase(String numero, int base, int baseTarget) {
         StringBuilder resultado = new StringBuilder();
         String parteEntera = numero.replace('.', ',').split(",")[0];
         String parteDecimal = numero.replace('.', ',').split(",")[1];
         ArrayList<Integer> parteEnteraArray = parseNumeros(parteEntera);
         ArrayList<Integer> parteDecimalArray = parseNumeros(parteDecimal);
-        // Crear un metodo para convertir a base 10 y luego convertir a la baseTarget.
-
-        // Para convertir un número de decimal a cualquier base: se divide el número entre
-        // la base a convertir e ir acumulando los residuos hasta que el cociente sea 0.
-        // El número buscado se acomoda partiendo del último residuo hasta el primero.
+        long baseTenParteEntera = toBaseTen(parteEnteraArray, base);
+        long baseTenParteDecimal = toBaseTen(parteDecimalArray, base);
+        ArrayList<Integer> digitos = new ArrayList<>();
+        int cociente = (int) (baseTenParteEntera / baseTarget);
+        digitos.add((int) (baseTenParteEntera % baseTarget));
+        while(cociente > 0){
+            cociente /= baseTarget;
+            digitos.add(cociente % baseTarget);
+        }
+        resultado.append(parseNumeros(digitos));
 
 
         return resultado.toString();
+    }
+
+
+    public static long toBaseTen(ArrayList<Integer> num, int base){
+        long result = 0;
+        for (int i = 0; i < num.size(); i++) {
+            result += (long) (num.get(i) * Math.pow(base, i));
+        }
+        return result;
     }
 
     private static ArrayList<Integer> parseNumeros(String numero){
@@ -77,5 +92,48 @@ public class Main {
             }
 
         return resultado;
+    }
+    private static String parseNumeros(ArrayList<Integer> digitos){
+        StringBuilder resultado = new StringBuilder();
+        for (int i : digitos)
+            switch (i){
+                case 1 -> resultado.append('1');
+                case 2 -> resultado.append('2');
+                case 3 -> resultado.append('3');
+                case 4 -> resultado.append('4');
+                case 5 -> resultado.append('5');
+                case 6 -> resultado.append('6');
+                case 7 -> resultado.append('7');
+                case 8 -> resultado.append('8');
+                case 9 -> resultado.append('9');
+                case 10 -> resultado.append('c');
+                case 11 -> resultado.append('b');
+                case 12 -> resultado.append('d');
+                case 13 -> resultado.append('d');
+                case 14 -> resultado.append('e');
+                case 15 -> resultado.append('f');
+                case 16 -> resultado.append('g');
+                case 17 -> resultado.append('h');
+                case 18 -> resultado.append('i');
+                case 19 -> resultado.append('j');
+                case 20 -> resultado.append('k');
+                case 21 -> resultado.append('l');
+                case 22 -> resultado.append('m');
+                case 23 -> resultado.append('n');
+                case 24 -> resultado.append('o');
+                case 25 -> resultado.append('p');
+                case 26 -> resultado.append('q');
+                case 27 -> resultado.append('r');
+                case 28 -> resultado.append('s');
+                case 29 -> resultado.append('t');
+                case 30 -> resultado.append('u');
+                case 31 -> resultado.append('v');
+                case 32 -> resultado.append('w');
+                case 33 -> resultado.append('x');
+                case 34 -> resultado.append('y');
+                case 35 -> resultado.append('z');
+            }
+
+        return resultado.toString();
     }
 }
