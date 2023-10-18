@@ -25,7 +25,7 @@ public class Main {
         int[] checks = new int[]{anioNacimiento, mesNacimiento, anioFallecimiento, mesFallecimiento};
         boolean check = false;
         for (int i = 0; i < 4; i++) {
-            if (check(checks[i])){
+            if (!check(checks[i])){
                 String error = "Error: coudn't read " + switch (i){
                     case 0 -> "Año Nacimiento";
                     case 1 -> "Mes Nacimiento";
@@ -49,15 +49,27 @@ public class Main {
     }
 
     public static String calcEdad(int anioNac, int mesNac, int anioMort, int mesMort){
-        return (anioMort-anioNac) + " años " + (mesMort-mesNac) + " meses";
+        int anios = anioMort-anioNac;
+        int meses = mesMort-mesNac;
+        if( meses < 0){
+            anios--;
+            meses += 12;
+        }
+        return anios + " años " + meses + " meses";
     }
 
     private static int getAnio(ArrayList<String> frase) {
         int num = 0;
         for (String s : frase){
-            if(s.matches("\\d{4}$")){
+            if(s.matches("[0-9]{4}")){
+                StringBuilder temp = new StringBuilder();
+                for (int i = 0; i < s.length(); i++) {
+                    if (String.valueOf(s.charAt(i)).matches("[0-9]{1}"))
+                        temp.append(s.charAt(i));
+                }
+                System.out.println("String año " + s + " tmp " + temp);
                 try{
-                    num = Integer.parseInt(s);
+                    num = Integer.parseInt(temp.toString());
                     break;
                 }catch(NumberFormatException e){
                     System.out.println("Parse error");
@@ -73,15 +85,33 @@ public class Main {
     private static int getMes(ArrayList<String> frase) {
         int num = 0;
         for (String s : frase){
-            if(s.matches("\\d{2}$")){
+
+            for ( int i = 0; i < s.length(); i++){
+                int length = 0;
+                if(String.valueOf(s.charAt(i)).matches("[0-9]")){
+                    length++;
+                }
+
+                // Make parser so same for months and years;
+                // reuse some code and only one method;
+
+
+            }
+            /*if(s.matches("[0-9]{2}$")){
+                StringBuilder temp = new StringBuilder();
+                for (int i = 0; i < s.length(); i++) {
+                    if (String.valueOf(s.charAt(i)).matches("[0-9]{1}"))
+                        temp.append(s.charAt(i));
+                }
+                System.out.println("String mes " + s + " tmp " + temp);
                 try{
-                    num = Integer.parseInt(s);
+                    num = Integer.parseInt(temp.toString());
                     break;
                 }catch(NumberFormatException e){
                     System.out.println("Parse error");
                     num = -1;
                 }
-            }
+            }*/
         }
         if (num == 0)
             System.out.println("Mes not found");
