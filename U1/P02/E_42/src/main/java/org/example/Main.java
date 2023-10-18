@@ -22,8 +22,34 @@ public class Main {
         int anioFallecimiento = getAnio(fraseFallecimiento);
         int mesNacimiento = getMes(fraseNacimiento);
         int mesFallecimiento = getMes(fraseFallecimiento);
-        System.out.println("Falleci " + anioFallecimiento + " " + mesFallecimiento + "\nNaci " + anioNacimiento + " " + mesNacimiento);
+        int[] checks = new int[]{anioNacimiento, mesNacimiento, anioFallecimiento, mesFallecimiento};
+        boolean check = false;
+        for (int i = 0; i < 4; i++) {
+            if (check(checks[i])){
+                String error = "Error: coudn't read " + switch (i){
+                    case 0 -> "Año Nacimiento";
+                    case 1 -> "Mes Nacimiento";
+                    case 2 -> "Año Muerte";
+                    case 3 -> "Mes Muerte";
+                    default -> "anything";
+                };
+                System.out.println(error);
+                check = true;
+            }
+        }
+        if (check)
+            return;
 
+        System.out.println("Edad: " + calcEdad(anioNacimiento, mesNacimiento, anioFallecimiento, mesFallecimiento));
+
+    }
+
+    public static boolean check(int a){
+        return a > 0;
+    }
+
+    public static String calcEdad(int anioNac, int mesNac, int anioMort, int mesMort){
+        return (anioMort-anioNac) + " años " + (mesMort-mesNac) + " meses";
     }
 
     private static int getAnio(ArrayList<String> frase) {
@@ -53,7 +79,7 @@ public class Main {
                     break;
                 }catch(NumberFormatException e){
                     System.out.println("Parse error");
-                    num = 1;
+                    num = -1;
                 }
             }
         }
