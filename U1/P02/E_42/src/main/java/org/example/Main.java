@@ -7,7 +7,7 @@ public class Main {
         Scanner t = new Scanner(System.in);
         System.out.print("Introduce una frase: ");
         String frase = t.nextLine();
-        int[][] numeros = splitFrases(frase);
+        int[][] numeros = getNumeros(frase);
         System.out.println(calcEdad(numeros));
     }
 
@@ -29,7 +29,7 @@ public class Main {
         return anios + " años " + meses + " meses";
     }
 
-    private static int[][] splitFrases(String frase) {
+    private static int[][] getNumeros(String frase) {
         String[] refinedFrase = frase.replace("/", " ").replace(",", " ").replace(";", " ").split("\\.")[0].split(" ");
         int anioEncontrado = 0;
         int mesEncontrado = 0;
