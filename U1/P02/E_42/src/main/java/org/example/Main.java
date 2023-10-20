@@ -9,8 +9,8 @@ public class Main {
         System.out.print("Introduce una frase: ");
         String frase = t.nextLine();
         int[][] numeros = getNumeros(frase);
-        System.out.println(Arrays.deepToString(numeros));
-        System.out.println(calcEdad(numeros));
+        // Debug System.out.println(Arrays.deepToString(numeros));
+        System.out.println("Edad de fallecimiento: " + calcEdad(numeros));
         t.close();
     }
     public static String calcEdad(int[][] numeros){
@@ -18,7 +18,6 @@ public class Main {
         int anioMin = Math.min(numeros[0][0], numeros[0][1]);
         int anios = anioMax - anioMin;
         int meses;
-
         if (anioMax == numeros[0][0])
             meses = numeros[1][0] - numeros[1][1];
         else
@@ -27,8 +26,7 @@ public class Main {
         if (meses < 0) {
             anios--;
             meses += 12;
-        }
-        return anios + " años " + meses + " meses";
+        }return anios + " años " + meses + " meses";
     }
     private static int[][] getNumeros(String frase){
         String[] frase2 = frase.split("[^0-9]");
