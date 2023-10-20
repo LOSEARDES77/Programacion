@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
         System.out.print("Introduce una frase: ");
         String frase = t.nextLine();
         int[][] numeros = getNumeros(frase);
+        System.out.println(Arrays.deepToString(numeros));
         System.out.println(calcEdad(numeros));
     }
 
@@ -30,7 +32,7 @@ public class Main {
     }
 
     private static int[][] getNumeros(String frase) {
-        String[] refinedFrase = frase.replace("/", " ").replace(",", " ").replace(";", " ").split("\\.")[0].split(" ");
+        String[] refinedFrase = frase.replace("/", " ").replace("(", " ").replace(")", " ").replace("=", " ").replace(",", " ").replace(";", " ").split("\\.")[0].split(" ");
         int anioEncontrado = 0;
         int mesEncontrado = 0;
         int[] anios = new int[]{0, 0};
