@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner t = new Scanner(System.in);
-        System.out.println("Introduce una operacion");
+        System.out.println("Introduce una operacion\nIntroduce '.' para salir");
         while(true) {
             System.out.print("> ");
             String input = t.next();
@@ -18,19 +18,22 @@ public class Main {
 
 
     private static void calculadora(String input){
-        String operacion = "";
+        char operacion = 0;
         for (char i: input.toCharArray()) {
             if (String.valueOf(i).matches("[-+*/^]")){
-                operacion = String.valueOf(i);
+                operacion = i;
                 break;
             }
         }
-        if (operacion.isEmpty()){
+        if (String.valueOf(operacion).isEmpty()){
             System.out.println("Coudn't identify the operator");
             return;
         }
-        String numero1 = input.split(operacion)[0];
-        String numero2 = input.split(operacion)[1];
+        // Debug: System.out.println("Input: " + input + "\nOperacion: " + operacion);
+        int index = input.indexOf(operacion);
+        String[] numbers = getNumbers(index, input);
+        String numero1 = numbers[0];
+        String numero2 = numbers[1];
 
         int num1 = convertir(numero1);
         int num2 = convertir(numero2);
@@ -44,10 +47,22 @@ public class Main {
         System.out.println("=> " + convertir(resultado));
     }
 
-    private static Object calc(int num1, int num2, String operacion) throws NullPointerException{
-        char signo = operacion.toCharArray()[0];
+    private static String[] getNumbers(int index, String input) {
+        StringBuilder num1 = new StringBuilder();
+        StringBuilder num2 = new StringBuilder();
+        for (int i = 0; i < index; i++){
+            num1.append(input.charAt(i));
+        }
+        for (int i = index+1; i < input.length(); i++){
+            num2.append(input.charAt(i));
+        }
+        return new String[]{num1.toString(), num2.toString()};
+
+    }
+
+    private static Object calc(int num1, int num2, char operacion) throws NullPointerException{
         NullPointerException exception = new NullPointerException();
-        return switch (signo){
+        return switch (operacion){
             case '+' -> num1 + num2;
             case '-' -> num1 - num2;
             case '*' -> num1 * num2;
