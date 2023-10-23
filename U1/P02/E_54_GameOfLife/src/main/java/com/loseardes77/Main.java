@@ -2,6 +2,8 @@ package com.loseardes77;
 
 import java.util.Scanner;
 
+// https://github.com/EvanMPutnam/Conway-Game-of-Life-Sim
+
 public class Main {
     public static void main(String[] args) {
         Scanner t = new Scanner(System.in);
