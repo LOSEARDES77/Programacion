@@ -8,12 +8,14 @@ public class Grid {
 
 
     public Grid(int[] size) {
+        super();
         this.size = size;
         this.cells = new HashMap<>();
         this.genCells();
     }
 
     public Grid(int[] size, HashMap<String, Cell> cells) {
+        super();
         this.size = size;
         this.cells = cells;
     }
@@ -32,18 +34,18 @@ public class Grid {
         for (int i = 0; i < this.size[1]; i++) {
 
             for (int j = 0; j < this.size[0]; j++)
-                System.out.print("-----");
+                System.out.print("————");
 
-            System.out.println();
+            System.out.println("—");
 
             for (int j = 0; j < this.size[0]; j++) {
-                System.out.print("| " + this.cells.get(i + ":" + j).intState() + " |");
+                System.out.print("| " + this.cells.get(i + ":" + j).intState() + " ");
             }
-            System.out.println();
+            System.out.println("|");
         }
         for (int j = 0; j < this.size[0]; j++)
-            System.out.print("-----");
-        System.out.println();
+            System.out.print("————");
+        System.out.println("—");
     }
 
     public void nextGen() {
@@ -62,5 +64,12 @@ public class Grid {
             }
             cell.updateState(neighboursStates);
         }
+    }
+
+    public static void main(String[] args) {
+        Grid grid = new Grid(new int[]{3,3});
+        grid.printGrid();
+        grid.nextGen();
+        grid.printGrid();
     }
 }

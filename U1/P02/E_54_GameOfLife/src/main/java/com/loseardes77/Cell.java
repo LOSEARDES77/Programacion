@@ -7,6 +7,7 @@ public class Cell {
     private final int y;
 
     public Cell(boolean isAlive, int x, int y) {
+        super();
         this.isAlive = isAlive;
         this.x = x;
         this.y = y;
@@ -55,4 +56,10 @@ public class Cell {
         return "pos: [" + this.x + ", " + this.y + "]\nisAlive: " + isAlive + "\n";
     }
 
+    public static void main(String[] args) {
+        Grid grid = new Grid(new int[]{3,3});
+        grid.printGrid();
+        grid.nextGen();
+        grid.printGrid();
+    }
 }
