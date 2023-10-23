@@ -1,64 +1,66 @@
 package com.loseardes77;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Grid {
     private final int[] size;
-    private final ArrayList<Cell> cells;
+    private final HashMap<String, Cell> cells;
+
 
     public Grid(int[] size) {
         this.size = size;
-        this.cells = this.genCells();
+        this.cells = new HashMap<>();
+        this.genCells();
     }
 
-    public Grid(int[] size, ArrayList<Cell> cells) {
+    public Grid(int[] size, HashMap<String, Cell> cells) {
         this.size = size;
         this.cells = cells;
     }
 
-    public ArrayList<Cell> genCells(){
-        if (!areThereCells()){
-            ArrayList<Cell> cells = new ArrayList<>();
-            for(int i = 0; i < this.size[0] - 1; i++){
-                for (int j = 0; j < this.size[1] - 1; j++){
-                    boolean state = 1 < (int) (Math.random() * 5) + 1;
-                    cells.add(new Cell(state, i, j));
+    public void genCells(){
+        if (cells.isEmpty()){
+            for(int i = 0; i < this.size[0]; i++){
+                for (int j = 0; j < this.size[1]; j++){
+                    boolean state = 2 > (int) (Math.random() * 5) + 1;
+                    cells.put(i + ":" + j, new Cell(state, i, j));
                 }
             }
-            return cells;
         }
-        return null;
     }
     public void printGrid(){
-        for (int j = 0; j < this.size[1]; j++) {
-            for (int i = 0; i < this.size[0]-1; i++) {
+        for (int i = 0; i < this.size[1]; i++) {
+
+            for (int j = 0; j < this.size[0]; j++)
                 System.out.print("-----");
+
+            System.out.println();
+
+            for (int j = 0; j < this.size[0]; j++) {
+                System.out.print("| " + this.cells.get(i + ":" + j).intState() + " |");
             }
             System.out.println();
-            for (int i = 0; i < this.size[0]-1; i++) {
-                System.out.print("| " + this.getCellState(i, j) + " |");
-            }
-            System.out.println();
-            for (int i = 0; i < this.size[0]-1; i++) {
-                System.out.print("-----");
-            }
         }
-
-
+        for (int j = 0; j < this.size[0]; j++)
+            System.out.print("-----");
+        System.out.println();
     }
 
-    private int getCellState(int i, int j) {
-        boolean state = this.cells.get(i)[j].getState()[0];
-        if (state) return 1;
-        else return 0;
-    }
-
-    private boolean areThereCells(){
-        try{
-            this.cells.get(0)[0].getState();
-            return true;
-        }catch (IndexOutOfBoundsException e){
-            return false;
+    public void nextGen() {
+        for (Cell cell : this.cells.values()){
+            int[][] neighboursPositions = cell.getNeighbours();
+            boolean[] neighboursStates = new boolean[9];
+            for (int i = 0; i < neighboursPositions.length; i++){
+                boolean neighbourState;
+                if( neighboursPositions[i][0] < 0 || neighboursPositions[i][1] < 0){
+                    neighbourState = false;
+                }else {
+                    Cell neighbourCell = this.cells.get(neighboursPositions[i][0] + ":" + neighboursPositions[i][1]);
+                    if (neighbourCell == null) neighbourState = false;
+                    else neighbourState = neighbourCell.getState();
+                }neighboursStates[i] = neighbourState;
+            }
+            cell.updateState(neighboursStates);
         }
     }
 }

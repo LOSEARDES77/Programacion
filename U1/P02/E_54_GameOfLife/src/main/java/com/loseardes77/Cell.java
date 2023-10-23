@@ -2,6 +2,7 @@ package com.loseardes77;
 
 public class Cell {
     private boolean isAlive;
+
     private final int x;
     private final int y;
 
@@ -11,8 +12,14 @@ public class Cell {
         this.y = y;
     }
 
-    public boolean[] getState(){
-        return new boolean[]{ this.isAlive};
+    public boolean getState(){
+        return this.isAlive;
+    }
+
+    public int intState(){
+        boolean state = this.getState();
+        if(state) return 1;
+        return 0;
     }
 
     public int[] getPos(){
@@ -42,6 +49,10 @@ public class Cell {
                 {this.x - 1, this.y    },{this.x, this.y    },{this.x + 1, this.y    },
                 {this.x - 1, this.y + 1},{this.x, this.y + 1},{this.x + 1, this.y + 1}
         };
+    }
+
+    public String toString(){
+        return "pos: [" + this.x + ", " + this.y + "]\nisAlive: " + isAlive + "\n";
     }
 
 }
