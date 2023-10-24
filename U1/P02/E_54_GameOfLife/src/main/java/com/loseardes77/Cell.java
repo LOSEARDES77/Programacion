@@ -33,9 +33,16 @@ public class Cell {
             if (i != 4)
                 if (neighbours[i]) count++;
         }
-        if (count == 2 || count == 3 && !this.isAlive){
-            this.isAlive = true;
+        if (count < 2)
+            this.isAlive = false;
+        else if (count > 3)
+            this.isAlive = false;
+        else {
+            if (!this.isAlive && count == 3){
+                this.isAlive = true;
+            }
         }
+
     }
 
     public void printCell(){

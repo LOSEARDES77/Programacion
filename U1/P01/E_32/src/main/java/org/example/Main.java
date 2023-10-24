@@ -19,7 +19,7 @@ public class Main {
         int crapulo = numero;
         do{
             crapulo = sumaCifras(crapulo);
-        }while (crapulo > 10);
+        }while (crapulo >= 10);
 
 
         return crapulo;

@@ -1,14 +1,11 @@
 package org.example;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Introduce un numero entero: ");
-        int numero1 = teclado.nextInt();
-        System.out.println("Introduce otro numero entero: ");
-        int numero2 = teclado.nextInt();
+        int numero1 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un numero entero: "));
+        int numero2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce otro numero entero: "));
         System.out.println("Tabla de multiplicar de " + numero1 + " hasta "+ numero2);
         int contador = 0;
         while (contador < (numero2 + 1)){

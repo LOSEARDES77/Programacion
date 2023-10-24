@@ -1,17 +1,13 @@
 package com.loseardes77;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
-// https://github.com/EvanMPutnam/Conway-Game-of-Life-Sim
 
 public class Main {
     public static void main(String[] args) {
-        Scanner t = new Scanner(System.in);
-        System.out.print("De que tamaño quieres que sea la tabla?: ");
-        int size = t.nextInt();
+        int size = Integer.parseInt(JOptionPane.showInputDialog("De que tamaño quieres que sea la tabla?"));;
         Grid grid = new Grid(new int[]{size, size});
-        System.out.print("Cuantas generaciones quieres jugar?: ");
-        int generaciones = t.nextInt();
+        int generaciones = Integer.parseInt(JOptionPane.showInputDialog("Cuantas generaciones quieres jugar?"));
         for (int i = 0; i < generaciones; i++){
             System.out.println("Generacion " + (i+1) + ":\n");
             grid.printGrid();
