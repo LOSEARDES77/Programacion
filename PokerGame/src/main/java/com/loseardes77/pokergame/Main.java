@@ -11,7 +11,7 @@ public class Main {
         players.add(new Player("Player 2"));
 
         // Deal five cards to each player
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             for (Player player : players) {
                 Card card = deck.dealCard();
                 player.getHand().addCard(card);

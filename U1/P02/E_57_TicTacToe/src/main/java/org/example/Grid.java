@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.HashMap;
 
 public class Grid {
@@ -37,14 +38,6 @@ public class Grid {
         }
         return board;
     }
-/*    private String genCellPossition(String lastPos){
-        if (lastPos.isEmpty()) return "0:0";
-        int x = Integer.parseInt(String.valueOf(lastPos.charAt(0)));
-        int y = Integer.parseInt(String.valueOf(lastPos.charAt(2)));
-        if(x == this.size-1) {y++; x = 0;}
-        else x++;
-        return posToString(x,y);
-    }*/
     public Cell[] genGrid() {
         Cell[] cells = new Cell[(int) Math.pow(this.size, 2)];
         for (int i = 0; i < Math.pow(this.size, 2); i++){
@@ -67,35 +60,48 @@ public class Grid {
         return result.toString();
 
     }
-
-
-/*    private String posToString(int x, int y){
-        return x + ":" + y;
-    }
-    private String posToString(int[] pos){
-        return pos[0] + ":" + pos[1];
-    }*/
-
-   /* private int[] getNeighbourStates(Cell cell){
-        int[] neighbourStates = new int[9];
-        int contador = 0;
-        for(int[] pos : cell.getParentPositions()){
-            neighbourStates[contador] = this.cells.get(posToString(pos)).getState();
-            contador++;
-        }
-        return neighbourStates;
-    }*/
-
-/*    private Cell cellAt(int x, int y){
-        return this.cells.get(posToString(x,y));
-    }*/
     public boolean isMathOver() {
-        return checkWin('X') || checkWin('O');
+        if( checkWin('X') || checkWin('O')) return true;
+        for (Cell cell : this.grid)
+            if (cell.getState() == ' ') return false;
+        return true;
+    }
+
+    private boolean isValidMove(int move) {
+        return move < 9 && move > -1 && this.grid[move].getState() == ' ' ;
     }
 
     public void player1() {
+        int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\nPlayer 1\nEnter a number")) - 1;
+        if (this.isValidMove(move)) {
+            this.grid[move].setState('X');
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Invalid move");
+            player1();
+        }
     }
 
     public void player2() {
+        int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\nPlayer 2\nEnter a number")) - 1;
+        if (this.isValidMove(move))
+            this.grid[move].setState('O');
+        else{
+            JOptionPane.showMessageDialog(null, "Invalid move");
+            player2();
+
+        }
+    }
+
+    public int determineWinner() {
+        if (checkWin('X')){
+            return 1;
+        }
+        else if (checkWin('O')){
+            return 2;
+        }
+        else{
+            return 0;
+        }
     }
 }
