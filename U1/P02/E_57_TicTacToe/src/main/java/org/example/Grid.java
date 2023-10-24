@@ -6,7 +6,6 @@ import java.util.HashMap;
 public class Grid {
     private Cell[] grid;
     private final int size = 3;
-    // private final HashMap<String, Cell> cells;
 
     public Grid() {
         this.grid = this.genGrid();
