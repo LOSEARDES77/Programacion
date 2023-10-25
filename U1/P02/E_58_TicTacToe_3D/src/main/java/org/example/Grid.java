@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.HashMap;
 
 public class Grid {
-    private Cell[] grid;
+    private Cell[][] grid;
     private final int size = 3;
 
     private final Player[] players;
@@ -23,14 +23,16 @@ public class Grid {
         return this.players;
     }
 
-    private final int[][] win = {{0, 1, 2},
+    private final int[][] win = {
+            {0, 1, 2},
             {3, 4, 5},
             {6, 7, 8},
             {0, 3, 6},
             {1, 4, 7},
             {2, 5, 8},
             {0, 4, 8},
-            {2, 4, 6}};
+            {2, 4, 6}
+    };
 
     private boolean checkWin(char c){
         char[] board = this.getBoard();
@@ -41,18 +43,20 @@ public class Grid {
         return false;
     }
 
-    private char[] getBoard(){
-        char[] board = new char[9];
-        for (int i = 0; i < 9; i++){
-            board[i] = grid[i].getState();
-        }
+    private char[][] getBoard(){
+        char[][] board = new char[this.size][(int) Math.pow(this.size, 2)];
+        for (int i = 0; i < this.size; i++)
+            for (int j = 0; j < Math.pow(this.size, 2); j++)
+                board[i][j] = grid[i][j].getState();
+
         return board;
     }
-    public Cell[] genGrid() {
-        Cell[] cells = new Cell[(int) Math.pow(this.size, 2)];
-        for (int i = 0; i < Math.pow(this.size, 2); i++){
-            cells[i] = new Cell(i + 1);
-        }
+    public Cell[][] genGrid() {
+        Cell[][] cells = new Cell[this.size][(int) Math.pow(this.size, 2)];
+        for (int i = 0; i < this.size; i++)
+            for (int j = 0; j < Math.pow(this.size, 2); j++)
+                cells[i][j] = new Cell(i + j + 1);
+
         return cells;
     }
 

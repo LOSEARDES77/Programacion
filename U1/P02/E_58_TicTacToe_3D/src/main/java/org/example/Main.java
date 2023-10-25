@@ -1,13 +1,11 @@
 package org.example;
 
 import javax.swing.JOptionPane;
-import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
         Grid grid = new Grid();
         Player[] players = grid.getPlayers();
-        // System.out.println(grid);
         while(true){
             grid.player1();
             if (grid.isMathOver()){
