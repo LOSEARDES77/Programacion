@@ -24,6 +24,7 @@ public class Grid {
     }
 
     private final int[][] win = {
+            // TODO add every 3d possibility
             {0, 1, 2},
             {3, 4, 5},
             {6, 7, 8},
@@ -43,11 +44,11 @@ public class Grid {
         return false;
     }
 
-    private char[][] getBoard(){
-        char[][] board = new char[this.size][(int) Math.pow(this.size, 2)];
+    private char[] getBoard(){
+        char[] board = new char[(int) Math.pow(this.size, 3)];
         for (int i = 0; i < this.size; i++)
             for (int j = 0; j < Math.pow(this.size, 2); j++)
-                board[i][j] = grid[i][j].getState();
+                board[i+j] = grid[i][j].getState();
 
         return board;
     }
@@ -61,13 +62,15 @@ public class Grid {
     }
 
     public String toString(){
+
+        // TODO refactor code to support 3d
         StringBuilder result = new StringBuilder();
         result.append("Best of 3 match\n").append("————".repeat(this.size)).append("—\n     ").append(players[0].getName()).append(": ").append(players[0].getWins()).append("          ").append(players[1].getName()).append(": ").append(players[1].getWins()).append("\n");
         for (int i = 0; i < this.size; i++){
             result.append("————".repeat(this.size));
             result.append("—\n");
             for (int j = this.size * i; j < this.size * (i+1); j++)
-                result.append("|       ").append(grid[j]).append("       ");
+                result.append("|       ").append(grid[i][j]).append("       ");
             result.append("|\n");
         }
         result.append("————".repeat(this.size));
@@ -77,19 +80,36 @@ public class Grid {
     }
     public boolean isMathOver() {
         if( checkWin('X') || checkWin('O')) return true;
-        for (Cell cell : this.grid)
-            if (cell.getState() == ' ') return false;
+        for (Cell[] cellArr : this.grid)
+            for (Cell cell : cellArr)
+                if (cell.getState() == ' ') return false;
         return true;
+    }
+    
+    public Cell getCell(int index) {
+        if (index < 0 || index > 26) throw new NumberFormatException();
+        int i, j;
+        if (index < 9){
+            i = 0;
+            j = index;
+        }else if (index < 18) {
+            i = 1;
+            j = index - 9;
+        }else {
+            i = 2;
+            j = index - 18;
+        }
+        return this.grid[i][j];
     }
 
     private boolean isValidMove(int move) {
-        return move < 9 && move > -1 && this.grid[move].getState() == ' ' ;
+        return move < 28 && move > -1 && this.getCell(move).getState() == ' ' ;
     }
 
     public void player1() {
         int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[0].getName() + "\nEnter a number")) - 1;
         if (this.isValidMove(move)) {
-            this.grid[move].setState('X');
+            this.getCell(move).setState('X');
         }
         else{
             JOptionPane.showMessageDialog(null, "Invalid move");
@@ -100,7 +120,7 @@ public class Grid {
     public void player2() {
         int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[1].getName() + "\nEnter a number")) - 1;
         if (this.isValidMove(move))
-            this.grid[move].setState('O');
+            this.getCell(move).setState('O');
         else{
             JOptionPane.showMessageDialog(null, "Invalid move");
             player2();
