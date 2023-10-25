@@ -19,8 +19,11 @@ public class Cell {
     @Override
     public String toString() {
         return switch (this.state){
-          case ' ' -> String.valueOf(this.id);
-          case 'X' -> "X";
+            case ' ' -> {
+                if (this.id < 9) yield "  " + this.id;
+                else yield String.valueOf(this.id );
+            }
+            case 'X' -> "X";
           case 'O' -> "O";
           default -> throw new IllegalStateException("Unexpected value: " + this.state);
         };
