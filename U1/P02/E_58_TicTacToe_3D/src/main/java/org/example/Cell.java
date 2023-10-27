@@ -20,7 +20,7 @@ public class Cell {
     public String toString() {
         return switch (this.state){
             case ' ' -> {
-                if (this.id < 9) yield "  " + this.id;
+                if (this.id < 10) yield " " + this.id + " ";
                 else yield String.valueOf(this.id );
             }
             case 'X' -> "X";

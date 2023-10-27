@@ -24,35 +24,31 @@ public class Grid {
     }
 
     private final int[][] win = {
-            // Rows, Columns, and Layers (Horizontal and Vertical)
-            {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // Rows in Layer 1
-            {9, 10, 11}, {12, 13, 14}, {15, 16, 17}, // Rows in Layer 2
-            {18, 19, 20}, {21, 22, 23}, {24, 25, 26}, // Rows in Layer 3
-            {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // Columns in Layer 1
-            {9, 12, 15}, {10, 13, 16}, {11, 14, 17}, // Columns in Layer 2
-            {18, 21, 24}, {19, 22, 25}, {20, 23, 26}, // Columns in Layer 3
-            {0, 9, 18}, {1, 10, 19}, {2, 11, 20}, // Vertical Stacks
-            {3, 12, 21}, {4, 13, 22}, {5, 14, 23}, // Vertical Stacks
-            {6, 15, 24}, {7, 16, 25}, {8, 17, 26}, // Vertical Stacks
+            {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+            {9, 10, 11}, {12, 13, 14}, {15, 16, 17},
+            {18, 19, 20}, {21, 22, 23}, {24, 25, 26},
 
-            // Diagonals within Layers
-            {0, 4, 8}, {2, 4, 6}, // Diagonals in Layer 1
-            {9, 13, 17}, {11, 13, 15}, // Diagonals in Layer 2
-            {18, 22, 26}, {20, 22, 24}, // Diagonals in Layer 3
+            //Columns on single board
+            {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+            {9, 12, 15}, {10, 13, 16}, {11, 14, 17},
+            {18, 21, 24}, {19, 22, 25}, {20, 23, 26},
 
-            // Diagonals Spanning Layers
-            {0, 13, 26}, {2, 13, 24}, // Diagonal from Top-Left to Bottom-Right
-            {6, 13, 18}, {8, 13, 20}, // Diagonal from Top-Right to Bottom-Left
+            //Diagonals on single board
+            {0, 4, 8}, {2, 4, 6}, {9, 13, 17},
+            {11, 13, 15}, {18, 22, 26}, {20, 22, 24},
 
-            // 3D Diagonals
-            {0, 4, 20}, {2, 4, 18}, // Diagonal from Top-Left to Bottom-Right (Layer 1 to 3)
-            {6, 4, 24}, {8, 4, 22}, // Diagonal from Top-Right to Bottom-Left (Layer 1 to 3)
-            {0, 12, 26}, {2, 12, 24}, // Diagonal from Top-Left to Bottom-Right (Layer 2 to 3)
-            {6, 12, 20}, {8, 12, 18}, // Diagonal from Top-Right to Bottom-Left (Layer 2 to 3)
-            {0, 4, 24}, {2, 4, 22}, // Diagonal from Top-Left to Bottom-Right (Layer 1 to 2)
-            {6, 4, 26}, {8, 4, 20}, // Diagonal from Top-Right to Bottom-Left (Layer 1 to 2)
-            {0, 12, 22}, {2, 12, 20}, // Diagonal from Top-Left to Bottom-Right (Layer 2 to 3)
-            {6, 12, 24}, {8, 12, 26}, // Diagonal from Top-Right to Bottom-Left (Layer 2 to 3)
+            //Straight down through boards
+            {0, 9, 18}, {1, 10, 19}, {2, 11, 20},
+            {3, 12, 21}, {4, 13, 22}, {5, 14, 23},
+            {6, 15, 24}, {7, 16, 25}, {8, 17, 26},
+
+            //Diagonals through boards
+            {0, 12, 24}, {1, 13, 25}, {2, 14, 26},
+            {6, 12, 18}, {7, 13, 19}, {8, 14, 20},
+            {0, 10, 20}, {3, 13, 23}, {6, 16, 26},
+            {2, 10, 18}, {5, 13, 21}, {8, 16, 24},
+            {0, 13, 26}, {2, 13, 24}, {6, 13, 20},
+            {8, 13, 18},
 
     };
 
@@ -89,13 +85,13 @@ public class Grid {
         for (int i = 0; i < this.size; i++){
             for (int j = 0; j < this.size; j++){
                 result.append("————".repeat(this.size));
-                result.append("—\n");
+                result.append("——\n");
                 for (int k = this.size * j; k < this.size * (j+1); k++)
-                    result.append("|       ").append(grid[i][k]).append("       ");
+                    result.append("|       ").append("%1$2s".formatted(grid[i][k])).append("       ");
                 result.append("|\n");
             }
             result.append("————".repeat(this.size));
-            result.append("—\n");
+            result.append("——\n");
         }
         return result.toString();
     }
