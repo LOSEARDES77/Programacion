@@ -32,7 +32,7 @@ public class Grid {
             {0, 4, 8},
             {2, 4, 6}};
 
-    private boolean checkWin(char c){
+    public boolean checkWin(char c){
         char[] board = this.getBoard();
         for (int i = 0; i < 8; i++)
             if (board[this.win[i][0]] == c && board[this.win[i][1]] == c && board[this.win[i][2]] == c)
@@ -104,15 +104,4 @@ public class Grid {
         }
     }
 
-    public int determineWinner() {
-        if (checkWin('X')){
-            return 1;
-        }
-        else if (checkWin('O')){
-            return 2;
-        }
-        else{
-            return 0;
-        }
-    }
 }

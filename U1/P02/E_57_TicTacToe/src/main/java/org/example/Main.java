@@ -11,7 +11,13 @@ public class Main {
         while(true){
             grid.player1();
             if (grid.isMathOver()){
-                players[0].addWin();
+                if (grid.checkWin('X')){
+                    players[0].addWin();
+                    JOptionPane.showMessageDialog(null, players[0].getName() + " wins");
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Draw");
+
                 grid = new Grid(players);
                 players = grid.getPlayers();
                 if(players[0].getWins() >= 2 || players[1].getWins() >= 2)
@@ -19,7 +25,13 @@ public class Main {
             }
             grid.player2();
             if (grid.isMathOver()){
-                players[1].addWin();
+                if (grid.checkWin('O')){
+                    players[1].addWin();
+                    JOptionPane.showMessageDialog(null, players[1].getName() + " wins");
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Draw");
+
                 grid = new Grid(players);
                 if(players[0].getWins() >= 2 || players[1].getWins() >= 2)
                     break;
