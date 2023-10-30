@@ -49,7 +49,6 @@ public class Grid {
     }
 
     public void nextGen() {
-        // HashMap<String, Cell> tempGrid = new HashMap<>();
         for (Cell cell : this.cells.values()){
             int[][] neighboursPositions = cell.getNeighbours();
             boolean[] neighboursStates = new boolean[9];
