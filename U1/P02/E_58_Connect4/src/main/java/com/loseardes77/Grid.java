@@ -23,27 +23,37 @@ public class Grid {
         return this.players;
     }
 
-    private final int[][] win = {{0, 1, 2},
-            {3, 4, 5},
-            {6, 7, 8},
-            {0, 3, 6},
-            {1, 4, 7},
-            {2, 5, 8},
-            {0, 4, 8},
-            {2, 4, 6}};
+    private final int[][] win = {
+            // horizontal
+            { 0,  1,  2,  3},
+            { 4,  5,  6,  7},
+            { 8,  9, 10, 11},
+            {12, 13, 14, 15},
+
+            // Vertical
+            { 0,  4,  8, 12},
+            { 1,  5,  8, 13},
+            { 2,  6, 10, 14},
+            { 3,  7, 11, 15},
+
+            // diagonal
+            { 0,  5, 10, 15},
+            { 3,  6,  9, 12},
+
+    };
 
     public boolean checkWin(char c){
         char[] board = this.getBoard();
-        for (int i = 0; i < 8; i++)
-            if (board[this.win[i][0]] == c && board[this.win[i][1]] == c && board[this.win[i][2]] == c)
+        for (int[] winPos : this.win)
+            if (board[winPos[0]] == c && board[winPos[1]] == c && board[winPos[2]] == c && board[winPos[3]] == c)
                 return true;
 
         return false;
     }
 
     private char[] getBoard(){
-        char[] board = new char[9];
-        for (int i = 0; i < 9; i++){
+        char[] board = new char[(int) Math.pow(this.size, 2)];
+        for (int i = 0; i < Math.pow(this.size, 2); i++){
             board[i] = grid[i].getState();
         }
         return board;
@@ -79,11 +89,18 @@ public class Grid {
     }
 
     private boolean isValidMove(int move) {
-        return move < 9 && move > -1 && this.grid[move].getState() == ' ' ;
+        return move < Math.pow(this.size, 2) && move > -1 && this.grid[move].getState() == ' ' ;
     }
 
     public void player1() {
-        int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[0].getName() + "\nEnter a number")) - 1;
+        int move;
+        try {
+            move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[1].getName() + "\nEnter a number")) - 1;
+        }catch (NumberFormatException ignored){
+            JOptionPane.showMessageDialog(null, "See you soon!");
+            System.exit(0);
+            return;
+        }
         if (this.isValidMove(move)) {
             this.grid[move].setState('X');
         }
@@ -94,7 +111,14 @@ public class Grid {
     }
 
     public void player2() {
-        int move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[1].getName() + "\nEnter a number")) - 1;
+        int move;
+        try {
+            move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[1].getName() + "\nEnter a number")) - 1;
+        }catch (NumberFormatException ignored){
+            JOptionPane.showMessageDialog(null, "See you soon!");
+            System.exit(0);
+            return;
+        }
         if (this.isValidMove(move))
             this.grid[move].setState('O');
         else{
