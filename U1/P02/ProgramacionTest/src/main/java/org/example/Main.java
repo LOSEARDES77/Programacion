@@ -7,7 +7,7 @@ public class Main {
         int lenthX = 100;
         int lenthY = 100;
         int maxCellValue = 9;
-        int searchRadious = 8;
+        int searchRadious = 3;
 
         int[][] matriz = new int[lenthX][lenthY];
         for (int i = 0; i < matriz.length; i++){
