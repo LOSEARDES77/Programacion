@@ -1,7 +1,6 @@
-package org.example;
+package com.loseardes77;
 
 import javax.swing.*;
-import java.util.HashMap;
 
 public class Grid {
     private Cell[][] grid;

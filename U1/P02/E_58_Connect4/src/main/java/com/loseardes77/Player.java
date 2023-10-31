@@ -1,4 +1,4 @@
-package org.example;
+package com.loseardes77;
 
 public class Player {
     private final String name;

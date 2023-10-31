@@ -1,4 +1,4 @@
-package org.example;
+package com.loseardes77;
 
 public class Cell {
     private char state = ' ';
@@ -21,11 +21,11 @@ public class Cell {
         return switch (this.state){
             case ' ' -> {
                 if (this.id < 10) yield " " + this.id + " ";
-                else yield String.valueOf(this.id );
+                else yield String.valueOf(this.id);
             }
             case 'X' -> "X";
-          case 'O' -> "O";
-          default -> throw new IllegalStateException("Unexpected value: " + this.state);
+            case 'O' -> "O";
+            default -> throw new IllegalStateException("Unexpected value: " + this.state);
         };
     }
 }

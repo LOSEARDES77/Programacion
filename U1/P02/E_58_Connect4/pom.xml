@@ -5,14 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.loseardes77</groupId>
-    <artifactId>E_58_TicTacToe_3D</artifactId>
-    <version>2.0</version>
+    <artifactId>E_58_Connect4</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <build>
         <plugins>
             <plugin>
