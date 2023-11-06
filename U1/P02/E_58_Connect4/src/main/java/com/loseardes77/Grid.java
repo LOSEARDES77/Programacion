@@ -95,7 +95,7 @@ public class Grid {
     public void player1() {
         int move;
         try {
-            move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[1].getName() + "\nEnter a number")) - 1;
+            move = Integer.parseInt(JOptionPane.showInputDialog(this + "\n" + players[0].getName() + "\nEnter a number")) - 1;
         }catch (NumberFormatException ignored){
             JOptionPane.showMessageDialog(null, "See you soon!");
             System.exit(0);
