@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int lenthX = 100;
-        int lenthY = 100;
+        int lenthX = 10000;
+        int lenthY = 10000;
         int maxCellValue = 9;
         int searchRadious = 3;
 
