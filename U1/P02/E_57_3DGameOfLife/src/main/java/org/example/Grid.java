@@ -20,7 +20,7 @@ public class Grid {
             for (int j = 0; j < size; j++){
                 for (int k = 0; k < size; k++){
                     boolean state = (int) (Math.random() * 10) < 2;
-                    System.out.printf("Cell at %d, %d, %d is %s\n", i, j, k, state ? "alive" : "dead");
+                    // Debug System.out.printf("Cell at %d, %d, %d is %s\n", i, j, k, state ? "alive" : "dead");
                     tmpgrid[i][j][k] = new Cell(state, new int[]{i, j, k});
                 }
             }
