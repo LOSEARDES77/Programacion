@@ -43,4 +43,7 @@ public class Bombilla {
         }
     }
 
+    public int getEncendidos() {
+        return encendidos;
+    }
 }
