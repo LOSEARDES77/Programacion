@@ -10,5 +10,7 @@ public class Main {
         b.encenderBombilla();
         b.apagarBombilla();
 
+        System.out.println(b.getEncendidos());
+
     }
 }
