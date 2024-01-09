@@ -40,7 +40,7 @@ public class Primitiva {
         for (int i = 0; i < 6; i++){
             int nuevoNumero;
             do {
-                 nuevoNumero = ((int) (Math.random() * 50)) + 1;
+                 nuevoNumero = ((int) (Math.random() * 49)) + 1;
             }while (estaRepetido(nuevoNumero, resultado));
             resultado[i] = nuevoNumero;
         }
