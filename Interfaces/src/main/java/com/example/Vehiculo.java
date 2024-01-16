@@ -1,20 +1,21 @@
-package org.example;
+package com.example;
+
+public abstract class Vehiculo {
 
 
-public class Coche {
-    private final String matricula;
-    private final double maxLitrosDeposito;
-    private final double maxLitrosReserva;
-    private final double velocidadMaxima;
-    private final double consumoMedio100km;
-    private Persona propietario;
-    private boolean motorArrancado;
-    private boolean estaEnReserva;
-    private double combustibleActual;
-    private double velocidadActual;
-    private double kilometraje;
+    protected final String matricula;
+    protected final double maxLitrosDeposito;
+    protected final double maxLitrosReserva;
+    protected final double velocidadMaxima;
+    protected final double consumoMedio100km;
+    protected Persona propietario;
+    protected boolean motorArrancado;
+    protected boolean estaEnReserva;
+    protected double combustibleActual;
+    protected double velocidadActual;
+    protected double kilometraje;
 
-    public Coche(String matricula, double maxLitrosDeposito, double velocidadMaxima, double consumoMedio100km) {
+    public Vehiculo(String matricula, double maxLitrosDeposito, double velocidadMaxima, double consumoMedio100km) {
         if (maxLitrosDeposito <= 0) this.maxLitrosDeposito = 50;
         else this.maxLitrosDeposito = maxLitrosDeposito;
 
@@ -52,9 +53,14 @@ public class Coche {
 
         return String.format("%04d", numero) + "-" + letra1 + letra2 + letra3;
     }
-    
-    private void log(String msg){
-        System.out.println("Coche con matricula: " + this.matricula + " \"" + msg + "\"");
+
+    protected void log(String msg){
+        String tipo;
+        if (this instanceof Coche) tipo = "Coche";
+        else if (this instanceof Camion) tipo = "Camion";
+        else if (this instanceof Autobus) tipo = "Autobus";
+        else tipo = "Vehiculo";
+        System.out.println(tipo + " con matricula: " + this.matricula + " \"" + msg + "\"");
     }
 
     public String getMatricula() {
@@ -127,7 +133,7 @@ public class Coche {
             return;
         }
         motorArrancado = true;
-       log("Motor arrancado");
+        log("Motor arrancado");
     }
 
     public void pararMotor(){
@@ -169,51 +175,29 @@ public class Coche {
         log("Velocidad fijada a " + velocidad + " km/h");
     }
 
-    public void recorrerKilometros(double kilometros){
-        if (kilometros < 0){
-            log("No se puede recorrer una distancia negativa");
-            return;
-        }
-        if (!motorArrancado){
-            log("No se puede recorrer una distancia si el motor no esta arrancado");
-            return;
-        }
-        if (velocidadActual == 0){
-            log("No se puede recorrer una distancia si la velocidad es cero");
-            return;
-        }
-        if (combustibleActual == 0){
-            log("No se puede recorrer una distancia si el combustible es cero");
-            return;
-        }
-        double consumeInstantaneo = consumoMedio100km * (1 + (velocidadActual - 100) / 100);
-        double combustibleNecesario = kilometros * consumeInstantaneo / 100;
+    public abstract void recorrerKilometros(double kilometros);
 
-        if (combustibleNecesario > combustibleActual){
-            double kilometrosRecorridos = 100 * combustibleActual / consumeInstantaneo;
-            log("Se han recorrido " + kilometrosRecorridos + " km por consumo insuficiente");
-            kilometraje += kilometrosRecorridos;
-            setEstaEnReserva(true);
-            setCombustibleActual(0);
-            return;
-        }
-        kilometraje += kilometros;
-        combustibleActual -= combustibleNecesario;
-        log("Recorridos " + kilometros + " km");
-    }
 
     @Override
     public String toString() {
+        String instance;
+        if (this instanceof Coche)
+            instance = "Coche";
+        else if (this instanceof Camion)
+            instance = "Camion";
+        else
+            instance = "Vehiculo";
         return
-                "  matricula: " + matricula + "\n" +
-                "  maxLitrosDeposito: " + maxLitrosDeposito + "\n" +
-                "  maxLitrosReserva: " + maxLitrosReserva + "\n" +
-                "  velocidadMaxima: " + velocidadMaxima + "\n" +
-                "  consumoMedio100km: " + consumoMedio100km + "\n" +
-                "  motorArrancado: " + motorArrancado + "\n" +
-                "  estaEnReserva: " + estaEnReserva + "\n" +
-                "  combustibleActual: " + combustibleActual + "\n" +
-                "  velocidadActual: " + velocidadActual + "\n" +
-                "  kilometraje: " + kilometraje;
+                instance + ":\n  matricula: " + matricula + "\n" +
+                        "  maxLitrosDeposito: " + maxLitrosDeposito + "\n" +
+                        "  maxLitrosReserva: " + maxLitrosReserva + "\n" +
+                        "  velocidadMaxima: " + velocidadMaxima + "\n" +
+                        "  consumoMedio100km: " + consumoMedio100km + "\n" +
+                        "  motorArrancado: " + motorArrancado + "\n" +
+                        "  estaEnReserva: " + estaEnReserva + "\n" +
+                        "  combustibleActual: " + combustibleActual + "\n" +
+                        "  velocidadActual: " + velocidadActual + "\n" +
+                        "  kilometraje: " + kilometraje;
     }
+
 }
