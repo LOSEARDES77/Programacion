@@ -1,3 +1,5 @@
+import org.example.Video;
+
 import javax.swing.*;
 import java.lang.reflect.Array;
 
@@ -10,8 +12,10 @@ public class Test {
         for (String c : s){
             System.out.println(c);
         }
-        int response = JOptionPane.showConfirmDialog(null, "Vas a eliminar:\n"+"" + "\n¿Estas seguro?", "¿Seguro?",JOptionPane.YES_NO_OPTION);
-        System.out.println(response);
+        // int response = JOptionPane.showConfirmDialog(null, "Vas a eliminar:\n"+"" + "\n¿Estas seguro?", "¿Seguro?",JOptionPane.YES_NO_OPTION);
+        // System.out.println(response);
+
+        System.out.println(null instanceof Video);
     }
 
     private static <T> T[] arrAdd(T[] arr, T o){

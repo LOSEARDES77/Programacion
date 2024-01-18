@@ -5,7 +5,7 @@ public class Pelicula extends Video {
     private final int duracion;
     private final String director;
 
-    protected Pelicula(int id, String titulo, String pais, Genero genero, int puntuacion, String anioDeEstreno, int duracion, String director) {
+    protected Pelicula(int id, String titulo, String pais, Genero genero, double puntuacion, String anioDeEstreno, int duracion, String director) {
         super(id, titulo, pais, genero, puntuacion);
         this.anioDeEstreno = anioDeEstreno;
         this.duracion = duracion;

@@ -10,11 +10,15 @@ import java.util.Comparator;
 public class CatalogoVideo {
     private Video[] catalogo;
 
+    public CatalogoVideo(Video[] catalogo) {
+        this.catalogo = catalogo;
+    }
+
     public void insertarEnCatalogo(Video v){
         this.catalogo = Utils.arrAdd(catalogo, v);
     }
     public void consultarCatalogo(){
-        System.out.println(catalogo);
+        System.out.println(this);
     }
 
     private String vidArrToStr(Video[] vs){
@@ -101,7 +105,7 @@ public class CatalogoVideo {
         System.out.println(s.getTemporadas()[temporada].getEpisodios().length);
     }
 
-    public void episodiostotales(int id){
+    public void episodiosTotales(int id){
         Video v = getMedia(id);
         assert v != null;
         assert v instanceof Serie;
@@ -111,7 +115,7 @@ public class CatalogoVideo {
             for (Episodio e : t.getEpisodios())
                 episodios++;
 
-        episodiostotales(episodios);
+        System.out.println(episodios);
     }
 
     public void ordenarSeriePelicula(){
@@ -139,12 +143,43 @@ public class CatalogoVideo {
 
     public void ordenarPorPuntuacionYTitulo(){
         ordenarPorTitulo();
-        Arrays.sort(catalogo, new Comparator<Video>() {
-            @Override
-            public int compare(Video o1, Video o2) {
-                return 0;
-            }
-        });
+        Arrays.sort(catalogo, Comparator.comparingDouble(o -> o.puntuacion));
     }
+
+    public void consultarTopDiez(){
+        Video[] tmp = catalogo;
+        Arrays.sort(tmp, Comparator.comparing(o -> o.titulo));
+        Arrays.sort(tmp, Comparator.comparing(o -> o.puntuacion));
+
+        for (int i = 0; i < 10; i++){
+            System.out.println(tmp[i]);
+        }
+
+    }
+
+    public void masSeriesAlmacenadas(Video[] c1, Video[] c2){
+        int seriesC1 = 0;
+        int seriesC2 = 0;
+        for (Video value : c1) {
+            if (value instanceof Serie) {
+                seriesC1++;
+            }
+        }
+
+        for (Video video : c2) {
+            if (video instanceof Serie) {
+                seriesC2++;
+            }
+        }
+
+        if (seriesC1 > seriesC2){
+            System.out.println("El catalogo 1 tiene mas series");
+        }else if (seriesC2 > seriesC1){
+            System.out.println("El catalogo 2 tiene mas series");
+        }else {
+            System.out.println("Tienen las mismas series");
+        }
+    }
+
 
 }
