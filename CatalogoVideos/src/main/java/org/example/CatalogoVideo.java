@@ -10,8 +10,8 @@ import java.util.Comparator;
 public class CatalogoVideo {
     private Video[] catalogo;
 
-    public CatalogoVideo(Video[] catalogo) {
-        this.catalogo = catalogo;
+    public CatalogoVideo() {
+        this.catalogo = new Video[0];
     }
 
     public void insertarEnCatalogo(Video v){
@@ -97,6 +97,10 @@ public class CatalogoVideo {
         }
     }
 
+    public Video[] getCatalogo() {
+        return catalogo;
+    }
+
     public void numeroDeEpisodios(int id, int temporada){
         Video v = getMedia(id);
         assert v != null;
@@ -107,9 +111,9 @@ public class CatalogoVideo {
 
     public void episodiosTotales(int id){
         Video v = getMedia(id);
-        assert v != null;
-        assert v instanceof Serie;
-        Serie s = (Serie) v;
+        if (!(v instanceof Serie s) || v == null){
+            return;
+        }
         int episodios = 0;
         for (Temporada t : s.getTemporadas())
             for (Episodio e : t.getEpisodios())
