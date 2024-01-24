@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Main {
+public class PiramidesCleopatra {
     public static void main(String[] args) {
         Scanner t = new Scanner(System.in);
         String primerNumero = t.nextLine();
