@@ -1,4 +1,4 @@
-package org.example;
+package org.aceptaelreto;
 
 import java.util.ArrayList;
 import java.util.Objects;

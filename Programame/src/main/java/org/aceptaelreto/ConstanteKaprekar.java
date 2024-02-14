@@ -1,4 +1,4 @@
-package org.example;
+package org.aceptaelreto;
 
 import java.util.Arrays;
 import java.util.Scanner;
