@@ -4,7 +4,6 @@ import org.Ej3.interfaz.Leer;
 import org.Ej3.modelo.Adosado;
 import org.Ej3.modelo.Chalet;
 import org.Ej3.modelo.Piso;
-import org.Ej3.modelo.Vivienda;
 
 public class Menu {
     /*

@@ -18,7 +18,7 @@ public class Vivienda {
         this.direccion = direccion;
         this.precio = precio;
         this.alquiler = esAlquiler(precio);
-        this.codVivienda = String.format("%d-%s-%03d", LocalDate.now().getYear(), (alquiler) ? "A" : "V", arraySize);
+        this.codVivienda = String.format("%d-%s-%03d", LocalDate.now().getYear(), (alquiler) ? "A" : "V", arraySize + 1);
     }
 
     private boolean esValidoPropietario(String codPropietario){

@@ -12,4 +12,5 @@ public class Main {
         profesor.respirar();
         profesor.trabajar();
     }
+
 }

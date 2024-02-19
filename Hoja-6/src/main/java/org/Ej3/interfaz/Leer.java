@@ -13,7 +13,7 @@ public class Leer {
         try  {
             return Integer.parseInt(cadena());
         }catch (NumberFormatException e) {
-            System.out.println("Error: Debe introducir un número entero");
+            System.out.print("Debe introducir un número entero: ");
             return entero();
         }
     }
@@ -23,7 +23,7 @@ public class Leer {
         try {
             return Double.parseDouble(cadena());
         } catch (NumberFormatException e) {
-            System.out.println("Error: Debe introducir un número decimal");
+            System.out.print("Debe introducir un número decimal: ");
             return decimal();
         }
     }
@@ -42,7 +42,7 @@ public class Leer {
             System.out.print(msg + ": ");
             return entero();
         } catch (NumberFormatException e) {
-            System.out.println("Error: Debe introducir un número entero");
+            System.out.print("Debe introducir un número entero: ");
             return entero(msg);
         }
     }
@@ -52,7 +52,7 @@ public class Leer {
             System.out.print(msg + ": ");
             return decimal();
         } catch (NumberFormatException e) {
-            System.out.println("Error: Debe introducir un número decimal");
+            System.out.print("Debe introducir un número decimal: ");
             return decimal(msg);
         }
     }
