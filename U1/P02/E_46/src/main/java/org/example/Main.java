@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -12,12 +10,12 @@ public class Main {
             System.out.print("> ");
             String input = t.next();
             if (input.equals(".")) break;
-            calculadora(input);
+            System.out.println("=> " + calculadora(input));
         }
     }
 
 
-    private static void calculadora(String input){
+    public static String calculadora(String input){
         char operacion = 0;
         for (char i: input.toCharArray()) {
             if (String.valueOf(i).matches("[-+*/^]")){
@@ -27,7 +25,7 @@ public class Main {
         }
         if (String.valueOf(operacion).isEmpty()){
             System.out.println("Coudn't identify the operator");
-            return;
+            return "";
         }
         // Debug: System.out.println("Input: " + input + "\nOperacion: " + operacion);
         int index = input.indexOf(operacion);
@@ -42,9 +40,9 @@ public class Main {
             resultado = (int) calc(num1, num2, operacion);
         }catch (NullPointerException e){
             System.out.println("Unknow operation (" + operacion + ") ");
-            return;
+            return "";
         }
-        System.out.println("=> " + convertir(resultado));
+        return convertir(resultado);
     }
 
     private static String[] getNumbers(int index, String input) {
