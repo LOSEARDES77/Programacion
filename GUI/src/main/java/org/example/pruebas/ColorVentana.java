@@ -29,7 +29,7 @@ public class ColorVentana {
         panel.add(b, BorderLayout.CENTER);
         b.setBounds(105, 60, 90, 20);
         panel.add(filler, BorderLayout.CENTER);
-
+        Runnable r = () -> {};
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {

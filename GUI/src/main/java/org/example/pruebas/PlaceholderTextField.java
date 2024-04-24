@@ -44,12 +44,17 @@ public class PlaceholderTextField extends JTextField {
         }
 
         final Graphics2D g = (Graphics2D) pG;
+        int textWidth = g.getFontMetrics().stringWidth(placeholder);
+        int componentWidth = getWidth();
+        int textHeight = g.getFontMetrics().getHeight();
+        int componentHeight = getHeight();
+        int y = (componentHeight - textHeight) / 2 + g.getFontMetrics().getAscent();
+        int x = (componentWidth - textWidth) / 2;
         g.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(getDisabledTextColor());
-        g.drawString(placeholder, getInsets().left, pG.getFontMetrics()
-                .getMaxAscent() + getInsets().top);
+        g.drawString(placeholder, x, y);
     }
 
     public void setPlaceholder(final String s) {
