@@ -33,9 +33,11 @@ public class ColorVentana {
         textField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    String color = textField.getText();
+                String color = textField.getText();
+                try {
                     panel.setBackground(new Color(Integer.parseInt(color, 16)));
+                }catch (Exception exc){
+
                 }
             }
 
@@ -46,7 +48,12 @@ public class ColorVentana {
 
             @Override
             public void keyReleased(KeyEvent e) {
+                String color = textField.getText();
+                try {
+                    panel.setBackground(new Color(Integer.parseInt(color, 16)));
+                }catch (Exception exc) {
 
+                }
             }
         });
         frame.add(panel);
