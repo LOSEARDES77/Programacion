@@ -45,4 +45,18 @@ public class Utils {
 
         return data;
     }
+
+    public static void rsToStrList(ResultSet rs) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+        List<List<String>> data = new ArrayList<>();
+
+        while (rs.next()) {
+            List<String> row = new ArrayList<>(columnCount);
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                row.add(rs.getString(columnIndex));
+            }
+            data.add(row);
+        }
+    }
 }
